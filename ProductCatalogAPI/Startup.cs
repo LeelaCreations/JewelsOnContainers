@@ -53,7 +53,7 @@ namespace ProductCatalogAPI
             app.UseSwagger()
                 .UseSwaggerUI(c => 
                 {
-                    c.SwaggerEndpoint($"/swagger/v1/swagger.json", "ProductcatalogAPI V1");
+                    c.SwaggerEndpoint($"/swagger/V1/swagger.json", "ProductcatalogAPI V1");
                 });
             app.UseMvc();
         }
