@@ -10,7 +10,7 @@ services:
     build:
       context: .\ProductCatalogAPI
       dockerfile: Dockerfile
-    environmet:
+    environment:
       DatabaseServer: mssqlserver
       DatabaseName: CatalogDatabase
       DatabaseUser: sa
@@ -26,7 +26,7 @@ services:
       - mssqlserver
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
-    environmet:
+    environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: ProductApi(!)
     container_name: jewelssqlserver

@@ -1,19 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
-WORKDIR /app
-EXPOSE 80
-
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
-COPY ["ProductCatalogAPI/ProductCatalogAPI.csproj", "ProductCatalogAPI/"]
-RUN dotnet restore "ProductCatalogAPI/ProductCatalogAPI.csproj"
-COPY . .
-WORKDIR "/src/ProductCatalogAPI"
-RUN dotnet build "ProductCatalogAPI.csproj" -c Release -o /app
+EXPOSE 80
 
-FROM build AS publish
+COPY . .
+RUN dotnet restore
 RUN dotnet publish "ProductCatalogAPI.csproj" -c Release -o /app
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "ProductCatalogAPI.dll"]
