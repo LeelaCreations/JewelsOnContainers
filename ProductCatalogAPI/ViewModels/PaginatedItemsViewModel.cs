@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductCatalogAPI.ViewModels
 {
+    //ViewModel Class
     public class PaginatedItemsViewModel<TEntity>where TEntity:class
     {
         public int PageSize { get; set; }
