@@ -1,19 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
-WORKDIR /app
-EXPOSE 80
-
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
-COPY ["WebMVC/WebMVC.csproj", "WebMVC/"]
-RUN dotnet restore "WebMVC/WebMVC.csproj"
+EXPOSE 80
+#copy everything, restore and publish
 COPY . .
-WORKDIR "/src/WebMVC"
-RUN dotnet build "WebMVC.csproj" -c Release -o /app
-
-FROM build AS publish
+RUN dotnet restore
 RUN dotnet publish "WebMVC.csproj" -c Release -o /app
-
-FROM base AS final
+#Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "WebMVC.dll"]
