@@ -24,7 +24,7 @@ namespace WebMVC.Controllers
                 PaginationInfo = new PaginationInfo
                 {
                     ActualPage = page ?? 0,
-                    ItemsPerPage = 10,
+                    ItemsPerPage = catalog.Data.Count,
                     TotalItems = catalog.Count,
                     TotalPages = (int)Math.Ceiling((decimal)catalog.Count / itemsOnPage)
                 },

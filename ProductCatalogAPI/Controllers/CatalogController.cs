@@ -44,17 +44,17 @@ namespace ProductCatalogAPI.Controllers
         }
 
         [HttpGet]
-        [Route("[action]/type/{catalogType}/brand/{catalogBrand}")]
-        public async Task<IActionResult> Items(int?catalogType,int?catalogBrand, [FromQuery]int pageIndex = 0, [FromQuery]int pageSize = 6)
+        [Route("[action]/type/{catalogTypeId}/brand/{catalogBrandId}")]
+        public async Task<IActionResult> Items(int? catalogTypeId, int? catalogBrandId, [FromQuery]int pageIndex = 0, [FromQuery]int pageSize = 6)
         {
-            var root =(IQueryable<CatalogItem>)_context.CatalogItems;
-            if (catalogType.HasValue)
+            var root = (IQueryable<CatalogItem>)_context.CatalogItems;
+            if (catalogTypeId.HasValue)
             {
-                root = root.Where(c => c.CatalogTypeId == catalogType);
+                root = root.Where(c => c.CatalogTypeId == catalogTypeId);
             }
-            if (catalogBrand.HasValue)
+            if (catalogBrandId.HasValue)
             {
-                root = root.Where(c => c.CatalogBrandId == catalogBrand);
+                root = root.Where(c => c.CatalogBrandId == catalogBrandId);
             }
             var itemsCount = await root.LongCountAsync();
             var items = await root.OrderBy(c => c.Name)
@@ -69,7 +69,7 @@ namespace ProductCatalogAPI.Controllers
                 Count = itemsCount,
                 Data = items
             };
-            return Ok(model);            
+            return Ok(model);
         }
         private List<CatalogItem> ChangePictureUrl(List<CatalogItem> items)
         {

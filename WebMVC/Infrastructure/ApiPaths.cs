@@ -22,7 +22,7 @@ namespace WebMVC.Infrastructure
             public static string GetAllCatalogItems(string baseUri,int page,int take, int? brand, int? type)
             {
                 var filterQs = string.Empty;
-                if (brand.HasValue || type.HasValue)
+                if (brand.HasValue && type.HasValue)
                 {
                     var brandQs = (brand.HasValue) ? brand.Value.ToString() : "null";
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";

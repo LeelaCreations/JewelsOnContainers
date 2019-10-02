@@ -19,31 +19,32 @@ namespace WebMVC.Controllers
 
 
         [Authorize]
-        public async Task<IActionResult> SignIn(string returnUrl)
-        {
-            var user = User as ClaimsPrincipal;
+        //public async Task<IActionResult> SignIn(string returnUrl)
+        //{
+        //    var user = User as ClaimsPrincipal;
 
-            var token = await HttpContext.GetTokenAsync("access_token");
-            var idToken = await HttpContext.GetTokenAsync("id_token");
-            foreach (var claim in user.Claims)
-            {
-                Debug.WriteLine($"Claim Type: {claim.Type} - Claim Value : {claim.Value}");
-            }
+        //    var token = await HttpContext.GetTokenAsync("access_token");
+        //    var idToken = await HttpContext.GetTokenAsync("id_token");
+        //    foreach (var claim in user.Claims)
+        //    {
+        //        Debug.WriteLine($"Claim Type: {claim.Type} - Claim Value : {claim.Value}");
+        //    }
 
-            if (token != null)
-            {
-                ViewData["access_token"] = token;
+        //    if (token != null)
+        //    {
+        //        ViewData["access_token"] = token;
 
-            }
-            if (idToken != null)
-            {
+        //    }
+        //    if (idToken != null)
+        //    {
 
-                ViewData["id_token"] = idToken;
-            }
-            // "Catalog" because UrlHelper doesn't support nameof() for controllers
-            // https://github.com/aspnet/Mvc/issues/5853
-            return RedirectToAction(nameof(CatalogController.About), "Catalog");
-        }
+        //        ViewData["id_token"] = idToken;
+        //    }
+        //    // "Catalog" because UrlHelper doesn't support nameof() for controllers
+        //    // https://github.com/aspnet/Mvc/issues/5853
+        //    return RedirectToAction(nameof(CatalogController.About), "Catalog");
+
+        //}
 
 
         public async Task<IActionResult> Signout()
