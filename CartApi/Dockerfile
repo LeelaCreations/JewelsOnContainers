@@ -4,9 +4,9 @@ EXPOSE 80
 #copy everything, restore and publish
 COPY . .
 RUN dotnet restore
-RUN dotnet publish "TokenServiceApi.csproj" -c Release -o /app
+RUN dotnet publish "CartApi.csproj" -c Release -o /app
 #Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "TokenServiceApi.dll"]
+ENTRYPOINT ["dotnet", "CartApi.dll"]
