@@ -14,7 +14,7 @@ using WebMVC.Models.CartModels;
 
 namespace WebMVC.Services
 {
-    public class CartService:ICatalogService
+    public class CartService:ICartService
     {
         private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;

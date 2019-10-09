@@ -25,7 +25,7 @@ services:
     depends_on:
       - mssqlserver
 
-    cart:
+  cart:
     image: jewels/cartapi
     build:
       context: .\CartApi
