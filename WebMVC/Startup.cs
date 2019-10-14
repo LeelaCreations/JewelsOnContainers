@@ -37,7 +37,9 @@ namespace WebMVC
 
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<ICatalogService, CatalogService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();           
             services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<ICartService, CartService>();
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var callbackUrl = Configuration.GetValue<string>("CallBackurl");
             services.AddAuthentication(options =>

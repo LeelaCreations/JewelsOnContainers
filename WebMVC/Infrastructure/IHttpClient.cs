@@ -10,19 +10,19 @@ namespace WebMVC.Infrastructure
     {
         // this is to limit the API calls to GET,POST,PUT,DELETE
 
-        Task<string> GetStringAsync(string uri, string autherizationToken = null,
-            string autherizationMethod = "Bearer");
+        Task<string> GetStringAsync(string uri, string authorizationToken = null,
+            string authorizationMethod = "Bearer");
 
         Task<HttpResponseMessage> PostAsync<T>(string uri, T item,
-            string autherizationToken = null,
-            string autherizationMethod = "Bearer");
+            string authorizationToken = null,
+            string authorizationMethod = "Bearer");
 
         Task<HttpResponseMessage> PutAsync<T>(string uri, T item,
-            string autherizationToken = null,
-            string autherizationMethod = "Bearer");
+            string authorizationToken = null,
+            string authorizationMethod = "Bearer");
 
         Task<HttpResponseMessage> DeleteAsync(string uri,
-            string autherizationToken = null,
-            string autherizationMethod = "Bearer");
+            string authorizationToken = null,
+            string authorizationMethod = "Bearer");
     }
 }
