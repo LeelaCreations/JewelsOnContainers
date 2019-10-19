@@ -32,10 +32,10 @@ namespace WebMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Dictionary<string,int> quantities,string action)
         {
-            //if (action == "[checkout]")
-            //{
-            //    return RedirectToAction("Create", "Order");
-            //}
+            if (action == "[ Checkout ]")
+            {
+                return RedirectToAction("Create", "Order");
+            }
             try
             {
                 var user = _identityService.Get(HttpContext.User);
