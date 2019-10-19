@@ -38,6 +38,7 @@ namespace CartApi.Controllers
             return Ok(basket);
         }
 
+        [HttpDelete("{id}")]
         public void Delete(string id)
         {
             _logger.LogInformation("Delete method in cart controller has been triggered");
